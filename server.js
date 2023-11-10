@@ -21,19 +21,49 @@ https
     console.log("server is runing at port 4000");
   });*/
 
-var express = require("express");
-var app = express();
-var HTTP_PORT = 8000;
-var sqlite3 = require('sqlite3').verbose();
+const express = require("express");
+const app = express();
+const HTTP_PORT = 8000;
+const sqlite3 = require('sqlite3').verbose();
+const cors = require('cors');
 const db_file = "db.sqlite";
+
+app.use(cors());
+app.use(express.json());
 
 app.listen(HTTP_PORT, () => {
     console.log("Server running on port " + HTTP_PORT);
 });
 
 app.get("/", (req, res, next) => {
-    console.log("x");
-    res.json({"message":"Ok"});
+    res.json({"status":"alive"});
+});
+
+app.get("/:key", (req, res, next) => {
+    const key = req.params.key;
+    const query = 'SELECT link FROM shortKey WHERE name = ?';
+    db.get(query, [key], (err, row) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Internal Server Error');
+        } else {
+            if (row) {
+                res.redirect(row.link);
+            } else {
+                res.status(404).send('Key not found');
+            }
+        }
+    });
+});
+
+app.put('/addKey', (req, res) => {
+    const key = generateRandomCombination();
+    const link = req.body.link;
+
+    addDb(key, link);
+
+    res.json({ message: 'Entry added successfully' });
+    console.log("new entry " + key + " : " + link + " has been added.");
 });
 
 app.use(function(req, res){
@@ -56,42 +86,8 @@ db.run(`CREATE TABLE shortKey (
 (err) => {
     if (err) {
     }else{
-        var insert = 'INSERT INTO shortKey (name, link) VALUES (?,?)'
-        db.run(insert, ["AdJP","https://wardgrosemans.be"]) // test value 1
-        db.run(insert, ["dPel2","https://boozydev.com"]) // test value 2
-        addDb("test2", "test123.com");
+        console.log('Table created. Try not to break it this time.');
     }
-});
-
-
-
-app.get("/:key", (req, res, next) => {
-    console.log("in get!");
-    const key = req.params.key;
-    const query = 'SELECT link FROM shortKey WHERE name = ?';
-    db.get(query, [key], (err, row) => {
-        if (err) {
-        console.error(err.message);
-        res.status(500).send('Internal Server Error');
-        } else {
-        if (row) {
-            res.redirect(row.link);
-        } else {
-            res.status(404).send('Key not found');
-        }
-        }
-    });
-});
-
-app.put('/:key', (req, res) => {
-    console.log("in put!");
-    const key = req.params.key;
-    const link = req.body.link; 
-
-    addDb(key, link);
-
-    res.json({ message: 'Entry added successfully' });
-    console.log("new entry " + key + " : " + link + "has been added.");
 });
 
 async function addDb(name, link) {
@@ -132,10 +128,4 @@ function exists(comb) {
             }
         });
     });
-}
-
-
-
-function hash(x) {
-    return db5(x); // To not forget usage of db5
 }
