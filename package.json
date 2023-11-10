@@ -1,0 +1,16 @@
+{
+  "name": "boozydev-link-shortener",
+  "version": "1.0.0",
+  "description": "Shortener for links",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ward",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.18.2",
+    "md5": "2.3.0",
+    "sqlite3": "5.1.6"
+  }
+}
