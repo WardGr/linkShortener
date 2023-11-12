@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 100%;
+    background: linear-gradient(180deg, rgb(222,175,89), rgb(240, 240, 240));
+    background-position: 0 5vh;
+    margin: 0;
+    height: 100%;
+}
+
+button {
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+    min-width: 100px;
+    background-color: rgb(222,175,89);
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 20%;
+    padding-right: 20%;
+    background-color: rgb(222,175,89);
+}
+
+navbar > div {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+navbar > div:hover {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255,226,60);
+}
+
+navbar > div > p, navbar > div > a {
+    text-transform: capitalize;
+    font-weight: bolder;
+}
+
+
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(222,175,89);
+    padding-bottom: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+footer i {
+    font-size: 1.5em;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+input, button {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgb(232,211,170);
+    border: none;
+    box-shadow: 0px 0px 6px 0px black;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: rgb(255,226,60);
+}
+
+#content {
+    min-height: calc(100vh - 5vh - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#content-title {
+    font-size: 1.7em;
+    font-weight: bolder;
+    margin: 0;
+}
+
+#bars {
+    display: none
+}
+
+a {
+    text-decoration: none;
+    color: black;
+
+}
+
+@media screen and (max-width: 600px) {
+    #bars {
+        display: flex;
+        height: 50px;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+    navbar div:not([id="bars"]){
+        max-height: 0px;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    navbar.responsive div:not([id="bars"]){
+        max-height: 50px;
+
+    }
+
+    footer {
+        height: 110px;
+    }
+
+    #content {
+        min-height: calc(100vh - 5vh - 110px);
+    }
+
+    navbar {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    navbar div:hover {
+        background-color: rgb(222,175,89);
+    }
+}

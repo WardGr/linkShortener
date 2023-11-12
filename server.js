@@ -56,13 +56,15 @@ app.get("/:key", (req, res, next) => {
     });
 });
 
-app.put('/addKey', (req, res) => {
+app.put('/addKey', async (req, res) => {
     const key = generateRandomCombination();
     const link = req.body.link;
 
-    addDb(key, link);
 
-    res.json({ message: 'Entry added successfully' });
+    const result = await addDb(key, link);
+    console.log(result);
+
+    res.json({result: result});
     console.log("new entry " + key + " : " + link + " has been added.");
 });
 
@@ -102,6 +104,7 @@ async function addDb(name, link) {
         }
         console.log(`New entry added!`);
     });
+    return name;
 }
 
 function generateRandomCombination() {
