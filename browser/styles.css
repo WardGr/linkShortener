@@ -3,7 +3,7 @@ body {
     text-align: center;
     width: 100%;
     background: linear-gradient(180deg, rgb(222,175,89), rgb(240, 240, 240));
-    background-position: 0 5vh;
+    background-position: 0 4vh;
     margin: 0;
     height: 100%;
 }

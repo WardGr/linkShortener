@@ -11,7 +11,7 @@ function navbar() {
 function addListener() {
     document.getElementById('add').addEventListener('click', function() {
         const link = document.getElementById('link').value;
-        const url = 'http://localhost:8000/addKey';
+        const url = 'https://link.boozydev.com/api/addKey';
 
         if (includesHttp(link)) {
             fetch(url, {
@@ -23,7 +23,7 @@ function addListener() {
             }).then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    resField.value = "localhost:8000/" + data.result;
+                    resField.value = "link.boozydev.com/api/" + data.result;
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -42,7 +42,7 @@ function copy() {
 }
 
 function includesHttp(input) {
-    if (input.startsWith("http://") || input.startsWith("https://")) {
+    if (input.toUpperCase().startsWith("HTTP://") || input.toUpperCase().startsWith("HTTPS://")) {
         return true;
     }
     return false;
