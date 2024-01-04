@@ -1,6 +1,6 @@
-# ShortLink API
+# BoozyDev LinkShortener API
 ## Overview
-ShortLink is a simple API for creating and managing short links. It allows you to generate unique short keys for your long URLs, making them easier to share and manage.
+boozyLinks is a simple API for creating and managing short links. It allows you to generate unique short keys for your long URLs, making them easier to share and manage.
 
 ## Features
 - **Create Short Links:** Generate short keys for your long URLs.
@@ -26,6 +26,7 @@ Follow the steps below to set up and use the ShortLink API:
 ```
 3. Configuration:
 - Make sure you have the required SSL certificates for HTTPS (replace placeholders in the options object in index.js). Or rewrite it to HTTP.
+- Change the API to https://yourdomain.com:8443 if using https, localhost:8443 otherwise.
 - Possibly, set up the database. The default configuration assumes a database file named db.sqlite. If none existent, it creates this file.
 
 ### Usage
