@@ -51,7 +51,6 @@ async function pingLink(link) {
         const data = await res.json();
         if (data.Answer) {
             console.log(data.Answer[0].data);
-            alert(`Added url successfully to address: ${data.Answer[0].data}!`);
             return true;
         } else {
             alert("Invalid link!");
