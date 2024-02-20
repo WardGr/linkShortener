@@ -1,7 +1,3 @@
-
-
-
-
 const resField = document.getElementById('link');
 window.onload = function () {
     addListener();
