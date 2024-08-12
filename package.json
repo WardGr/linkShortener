@@ -10,9 +10,9 @@
   "license": "MIT",
   "dependencies": {
     "cors": "2.8.5",
-    "express": "4.18.2",
+    "express": "4.19.2",
     "md5": "2.3.0",
     "node-fetch": "3.3.2",
-    "sqlite3": "5.1.6"
+    "sqlite3": "5.1.7"
   }
 }
